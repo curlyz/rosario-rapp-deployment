@@ -1,0 +1,20 @@
+/* [project]/src/styles/bento.css [client] (css) */
+:root {
+  --bento-brandColor-brandPrimary: green;
+  --bento-interactiveBackgroundColor-primarySolidEnabledBackground: black;
+  --bento-brandColor-brandPrimary: #000000;
+  --bento-foregroundColor-foregroundInteractive: #000000;
+  --bento-textColor-textInteractive: #000000;
+  --bento-interactiveBackgroundColor-primarySolidEnabledBackground: #000000;
+  --bento-interactiveForegroundColor-primaryTransparentEnabledForeground: #000000;
+  --bento-interactiveForegroundColor-linkEnabled: #000000;
+  --bento-outlineColor-outlineInteractive: #000000;
+  --bento-outlineColor-outlineInteractivePrimaryEnabled: #000000;
+  --bento-outlineColor-outlineInputFocus: #000000;
+  --bento-boxShadow-outlineInteractive: inset 0px 0px 0px 1px #000000;
+  --bento-boxShadow-outlineInteractiveBottom: inset 0px -1px 0px #000000;
+  --bento-boxShadow-outlineInteractivePrimaryEnabled: inset 0px 0px 0px 1px #000000;
+  --bento-boxShadow-outlineInputFocus: inset 0px 0px 0px 2px #000000;
+  --bento-backgroundColor-backgroundInteractive: #000000;
+}
+/*# sourceMappingURL=src_styles_bento_735113.css.map*/
