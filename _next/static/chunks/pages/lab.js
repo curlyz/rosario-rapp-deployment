@@ -1,5 +1,5 @@
 __turbopack_load_page_chunks__("/lab", [
-  "static/chunks/[root of the server]__693c27._.js",
+  "static/chunks/[root of the server]__4ff6dc._.js",
   "static/chunks/node_modules_react-color_es_c04276._.js",
   "static/chunks/node_modules_next_dist_compiled_8ff636._.js",
   "static/chunks/node_modules_next_dist_client_4176b2._.js",
@@ -42,6 +42,7 @@ __turbopack_load_page_chunks__("/lab", [
   "static/chunks/node_modules_react-icons_bi_index_mjs_41d22a._.js",
   "static/chunks/node_modules_react-icons_fa_index_mjs_bad01e._.js",
   "static/chunks/node_modules_react-icons_ai_index_mjs_2e83ab._.js",
+  "static/chunks/node_modules_react-icons_tb_index_mjs_68ac2a._.js",
   "static/chunks/node_modules_react-icons_lia_index_mjs_55ed59._.js",
   "static/chunks/node_modules_react-icons_gi_index_mjs_e0b001._.js",
   "static/chunks/node_modules_react-icons_lib_399534._.js",
@@ -53,9 +54,9 @@ __turbopack_load_page_chunks__("/lab", [
   "static/chunks/node_modules_@react-aria_c1b7d2._.js",
   "static/chunks/node_modules_@react-stately_dbc733._.js",
   "static/chunks/node_modules_@floating-ui_fd67ca._.js",
-  "static/chunks/node_modules_@radix-ui_cace49._.js",
-  "static/chunks/node_modules_766e44._.js",
-  "static/chunks/node_modules_next_dist_pages_60869a._.js",
-  "static/chunks/[next]_entry_page-loader_ts_4adbd3._.js",
-  "static/chunks/[next]_entry_page-loader_ts_a1f4b9._.js"
+  "static/chunks/node_modules_@radix-ui_271e96._.js",
+  "static/chunks/node_modules_0562a8._.js",
+  "static/chunks/node_modules_next_dist_pages_718807._.js",
+  "static/chunks/[next]_entry_page-loader_ts_86c247._.js",
+  "static/chunks/[next]_entry_page-loader_ts_0fdb4e._.js"
 ])

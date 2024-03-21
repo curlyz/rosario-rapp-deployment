@@ -1,5 +1,5 @@
 __turbopack_load_page_chunks__("/", [
-  "static/chunks/[root of the server]__2d6a5e._.js",
+  "static/chunks/[root of the server]__50662d._.js",
   "static/chunks/node_modules_next_dist_compiled_8ff636._.js",
   "static/chunks/node_modules_next_dist_shared_lib_27b9eb._.js",
   "static/chunks/node_modules_next_dist_client_4176b2._.js",
@@ -50,9 +50,9 @@ __turbopack_load_page_chunks__("/", [
   "static/chunks/node_modules_@react-aria_c1b7d2._.js",
   "static/chunks/node_modules_@react-stately_dbc733._.js",
   "static/chunks/node_modules_@floating-ui_fd67ca._.js",
-  "static/chunks/node_modules_@radix-ui_c360f8._.js",
-  "static/chunks/node_modules_f3cf88._.js",
-  "static/chunks/node_modules_next_dist_pages_066f32._.js",
-  "static/chunks/[next]_entry_page-loader_ts_53ebd4._.js",
-  "static/chunks/[next]_entry_page-loader_ts_599889._.js"
+  "static/chunks/node_modules_@radix-ui_683a69._.js",
+  "static/chunks/node_modules_7a1545._.js",
+  "static/chunks/node_modules_next_dist_pages_e5e506._.js",
+  "static/chunks/[next]_entry_page-loader_ts_05f595._.js",
+  "static/chunks/[next]_entry_page-loader_ts_990c47._.js"
 ])
