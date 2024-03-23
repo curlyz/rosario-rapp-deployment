@@ -497,6 +497,7 @@ async function requestDevice() {
     });
     if (!device) return;
     device.addEventListener("gattserverdisconnected", ()=>{
+        location.reload();
         isInitialized = false;
         console.debug(`ble/ disconnected`, "Red");
         reconnectTimeout = setTimeout(async ()=>{
@@ -717,7 +718,7 @@ async function registerServiceWorker() {
         setInterval(function() {
             fetch("/index.html");
         }, 10000);
-        const regitration = await navigator.serviceWorker.register("/sw.js", {
+        var regitration = await navigator.serviceWorker.register("/sw.js", {
             scope: "/"
         });
     } catch (e) {
@@ -1238,6 +1239,11 @@ function convertSteps(steps) {
             cvt.action.pumpPower = step.action.pumpPower;
             cvt.target.targetType = "Weight";
             cvt.target.value = step.target.value * mock || 0;
+        } else if (step.action.actionType == __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$gateway$2f$step$2e$ts__$5b$client$5d$__$28$ecmascript$29$__["EnumAction"].RGB) {
+            cvt.action.actionType = "RGB";
+            cvt.action.color = step.action.color;
+            cvt.action.start = step.action.start;
+            cvt.action.stop = step.action.stop;
         } else if (step.action.actionType == __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$gateway$2f$step$2e$ts__$5b$client$5d$__$28$ecmascript$29$__["EnumAction"].Profile) {
             cvt.action.actionType = "Profile";
             cvt.action.segments = step.action.segments || [];
@@ -1425,7 +1431,8 @@ function switchLocales(locale) {
 const initialState = {
     calibration: {
         flowmeter: new Array(3).fill(1),
-        grinder: new Array(3).fill(1)
+        grinder: new Array(3).fill(1),
+        pressure: new Array(4).fill(1.2)
     },
     setCalibration: (calibration)=>{},
     flowmeterDisplay: new Array(3).fill({
@@ -1435,6 +1442,8 @@ const initialState = {
     setFlowmeterDisplay: (flowmeterDisplay)=>{},
     flowCount: new Array(3).fill(0),
     flowRate: new Array(3).fill(0),
+    pressure: new Array(4).fill(0),
+    setPressure: (pressure)=>{},
     connectButtonStyle: "outline",
     connectButtonText: "Connect",
     selectedPage: "Formula",
@@ -1556,6 +1565,7 @@ function handleFeedback(data) {
             console.error(e);
         }
     } else if (data.command == "rp.finish") {
+        window.finishMissionControl();
     // setTimeout(() => {
     //   ctx.setModalDisplay(false)
     // }, 10000)
@@ -1629,6 +1639,7 @@ function DeviceProvider({ children }) {
     const [style, setStyle] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"](initialState.style);
     const [flowCount, setFlowCount] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"](initialState.flowCount);
     const [flowRate, setFlowRate] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"](initialState.flowRate);
+    const [pressure, setPressure] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"](initialState.pressure);
     const [flowmeterDisplay, setFlowmeterDisplay] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"](initialState.flowmeterDisplay);
     const [modalDisplay, setModalDisplay] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"](false);
     const [addFormulaOpen, setAddFormulaOpen] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"](false);
@@ -1669,7 +1680,9 @@ function DeviceProvider({ children }) {
             setformulaUpdatedTimestamp,
             formulaUpdatedTimestamp,
             modalDisplay,
-            setModalDisplay
+            setModalDisplay,
+            pressure,
+            setPressure
         }), [
         grinderSettings,
         connected,
@@ -1694,7 +1707,9 @@ function DeviceProvider({ children }) {
         setformulaUpdatedTimestamp,
         formulaUpdatedTimestamp,
         setModalDisplay,
-        modalDisplay
+        modalDisplay,
+        pressure,
+        setPressure
     ]);
     const setValue = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useMemo"](()=>({
             setConnected,
@@ -1785,7 +1800,14 @@ function DeviceProvider({ children }) {
         win.pullInterval = setInterval(async ()=>await managePull(), 10000);
         setTimeout(async ()=>{
             await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$gateway$2f$service_worker$2e$ts__$5b$client$5d$__$28$ecmascript$29$__["registerServiceWorker"]();
-        }, 10000);
+        }, 1000);
+        window.addEventListener('keydown', (evt)=>{
+            if (evt.ctrlKey) {
+                if (evt.key == 'k') {
+                    setModalDisplay(true);
+                }
+            }
+        });
     });
     // Todo: fix later, too lzay
     const contextValue = {
@@ -1798,11 +1820,11 @@ function DeviceProvider({ children }) {
         children: children
     }, void 0, false, {
         fileName: "<[project]/src/gateway/provider.tsx>",
-        lineNumber: 524,
+        lineNumber: 543,
         columnNumber: 5
     }, this);
 }
-_s(DeviceProvider, "XFvLoHkW6Gl87cW/MfcsR43nhKU=", false, function() {
+_s(DeviceProvider, "RMi3hHymXCb9uSpNa4N4S7RYhJs=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$export$2d$i18n$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useTranslation"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$usehooks$2d$ts$2f$dist$2f$esm$2f$useLocalStorage$2f$useLocalStorage$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useLocalStorage"],
